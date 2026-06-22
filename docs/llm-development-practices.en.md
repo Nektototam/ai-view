@@ -1,45 +1,45 @@
-# Working with LLMs in Software Development: A Short Guide for the Team
+# Working with LLMs in Software Development: A Short Team Guide
 
-An internal knowledge-sharing document. LLMs are not a replacement for developers; they are force multipliers when paired with a solid process: clear goals, clarifying questions, architecture alignment, durable project context, and mandatory verification of the result.
+An internal knowledge-sharing document. LLMs don't replace developers—they amplify them, but only when the process is solid: clear goals, clarifying questions, architectural alignment, durable project context, and mandatory verification of output.
 
 ---
 
-## How the process works (9 blocks)
+## How the process is organized (9 blocks)
 
-| Block | Summary |
-|------|------|
-| **1. Dialogue** | Communicate clearly; do not hesitate to ask follow-up questions |
-| **2. Critical thinking** | Evaluate solutions and the “cost of the question” |
-| **3. Freshness** | Re-check library and API versions |
+| Block | Key idea |
+|-------|----------|
+| **1. Dialogue** | Communicate clearly; don't hesitate to ask follow-ups |
+| **2. Critical thinking** | Challenge solutions; weigh the "cost of the question" |
+| **3. Freshness** | Double-check library and API versions |
 | **4. Architecture** | Align before making large changes |
-| **5. Environment and project** | Prepare the repository for collaborative human–model work |
-| **6. Verification** | Tests, diff review, and responsibility stay with the human |
-| **7. Work modes** | Spec mode for features, ad-hoc for hotfixes—with an explicit threshold for switching |
-| **8. Session management** | Know when to stop and how to avoid drowning in a cascade of fixes |
-| **9. Solo work** | Compensate for the lack of a reviewer with process |
+| **5. Environment & project** | Set up the repository for human + model collaboration |
+| **6. Verification** | Tests, diff review, and accountability stay with the human |
+| **7. Work modes** | Spec mode for features, ad-hoc for hotfixes—with an explicit switch threshold |
+| **8. Session management** | Know when to stop; avoid drowning in a fix cascade |
+| **9. Solo work** | Compensate for the missing reviewer through process |
 
 ---
 
 ## Checklist before starting a task
 
-- [ ] I stated the goal in **plain language**, but with clear boundaries (what to do / what not to touch)
-- [ ] I named the constraints: data volume, deadlines, development platforms, documentation language, i18n
-- [ ] I confirmed that **the assistant understood the task the same way I did** (rephrased it in its own words)
-- [ ] I asked: **is there an alternative** and what is the “cost of the question” (complexity, lock-in, maintenance)
-- [ ] I asked **my own domain-specific questions** (the model often does not know your nuances)
-- [ ] For external dependencies, I checked **current versions and APIs** (docs, repository, search)
-- [ ] I discussed **architecture** before a large diff and broke the task into steps
+- [ ] Stated the goal in **plain language** with clear boundaries (what to do / what not to touch)
+- [ ] Named constraints: data volumes, deadlines, target platforms, documentation language, i18n
+- [ ] Confirmed the **assistant understood the task the same way I did** (rephrased in its own words)
+- [ ] Asked: **is there an alternative**, and what's the "cost of the question" (complexity, lock-in, maintenance)
+- [ ] Asked **my own domain-specific questions** (the model often doesn't know your specifics)
+- [ ] For external dependencies: verified **current versions and APIs** (docs, repo, search)
+- [ ] Discussed **architecture** before a large diff; broke the task into steps
 - [ ] The environment can **run checks** (build, tests, linter) in one or two commands
-- [ ] Repeated project context is **captured in the repository** (rules, `AGENTS.md`, scripts), not only in chat
-- [ ] The **risk level** is stated: draft / production / security-critical
+- [ ] Recurring project context is **captured in the repository** (rules, `AGENTS.md`, scripts)—not only in chat
+- [ ] Stated the **risk level**: draft / production / security-critical
 
 ## Checklist after the model responds
 
-- [ ] I reviewed the **diff**, not just the text in chat
-- [ ] I ran **tests and the linter** (or a manual scenario for UI)
-- [ ] I checked for extra files, secrets, or accidental dependencies
-- [ ] If something is unclear, I **asked for an explanation** before merging
-- [ ] For a large change, I got a **second pair of eyes** from a colleague or a separate review pass
+- [ ] Read the **diff**, not just the text in chat
+- [ ] Ran **tests and linter** (or a manual scenario for UI)
+- [ ] Checked for stray files, leaked secrets, or accidental dependencies
+- [ ] If anything is unclear, **asked for an explanation** before merging
+- [ ] For a large change—got a **second pair of eyes** from a colleague or a separate review pass
 
 ---
 
@@ -48,174 +48,174 @@ An internal knowledge-sharing document. LLMs are not a replacement for developer
 ### 1. Dialogue
 
 - Use **natural language**—models are trained on human speech.
-- “Natural” does not mean “vague”: add specifics wherever boundaries matter.
-- Do not be shy: *“I didn’t follow that—explain how it works.”*
-- Repeat questions until you align both on **understanding** and on the chosen approach.
+- "Natural" doesn't mean "vague": add specifics wherever boundaries matter.
+- Don't be shy: *"I didn't follow that—explain how it works."*
+- Keep asking until you converge on both **understanding** and the chosen approach.
 
 ### 2. Critical thinking
 
-- Ask for justification: *why this library rather than another one?*
-- Evaluate the “cost of the question”: migrations, performance, dependencies, long-term maintenance.
-- Ask the questions that **matter to you**: data size, SLA, legacy constraints, company policies.
+- Demand justification: *why this library and not another?*
+- Weigh the "cost of the question": migrations, performance, dependency footprint, long-term maintenance.
+- Ask the questions that **matter to you**: data volume, SLA, legacy constraints, company policies.
 
 ### 3. Freshness
 
-- A model may confidently suggest an **outdated or non-existent API**.
+- A model may confidently suggest an **outdated or nonexistent API**.
 - Explicitly ask it to cross-check documentation, the codebase, and current releases.
-- Still **run the code**—reasoning in chat is not a substitute for execution.
+- **Run the code** regardless—reasoning in chat doesn't replace execution.
 
 ### 4. Architecture
 
 - Discuss structure **before** mass edits.
-- Prefer several **small, agreed steps** over a single “do everything.”
-- Capture long-lived decisions in a short note or ADR if the choice will stick around.
+- Prefer several **small, agreed-upon steps** over a single "do everything."
+- Record long-lived decisions in a short note or ADR.
 
-### 5. Environment and project
+### 5. Environment & project
 
-- Set up the environment for the **human + model pair**, not just for yourself:
+- Configure the environment for the **human + model pair**, not just for yourself:
   - shared commands (`task test`, `npm run lint`, `pytest`);
-  - project rules stored in repository files;
-  - access to the terminal, git, and the code structure.
-- Fewer IDE extensions means less noise and fewer conflicts.
-- The workstation is **dialogue + diff review + running checks**, not just a prompt window.
-- When configuring tools, discuss cross-platform **development**, i18n, and the language and format of documentation with the model.
-- Periodically **revisit your practices**: cloud models and tools change faster than it seems.
+  - project rules stored in repo files;
+  - terminal, git, and code-structure access.
+- Fewer IDE extensions → less noise, fewer conflicts.
+- The workstation is **dialogue + diff review + running checks**—not just a prompt window.
+- When setting up tooling, discuss cross-platform **development** needs, i18n, and documentation language/format with the model.
+- **Revisit your practices** periodically: cloud models and tools change faster than you'd expect.
 
-### 6. Verification and responsibility
+### 6. Verification and accountability
 
 | Human | Model |
-|---------|--------|
-| goal, priorities, “why” | drafts, options, routine work |
-| constraints and risks | volume of code, refactoring |
-| diff review, final “merge / do not merge” | codebase search, error-fix iterations |
-| responsibility for production | — |
+|-------|-------|
+| Goal, priorities, "why" | Drafts, options, routine work |
+| Constraints and risks | Code volume, refactoring |
+| Diff review, final merge/reject call | Codebase search, error-fix iterations |
+| Production accountability | — |
 
-- Rule: **it is not accepted until checks are green** (or there is an explicitly documented exception).
-- Do not paste secrets into chat; be cautious with new dependencies suggested by the model.
+- Rule: **not accepted until checks are green** (or there's an explicitly documented exception).
+- Don't paste secrets into chat; be cautious with dependencies the model suggests.
 
-### When an LLM is a poor primary tool
+### When an LLM is the wrong primary tool
 
-- Legally sensitive wording without a lawyer.
+- Legally binding wording without a lawyer.
 - Safety-critical logic without formal verification.
-- Incident investigation without logs and facts—you need a human and a process.
+- Incident investigation without logs and reproducible facts—you need a human and a process.
 
 ---
 
 ## Two work modes: spec vs. ad-hoc
 
-In practice, working with LLMs falls into two fundamentally different modes. Both are legitimate—but they require different discipline.
+Day-to-day work with LLMs splits into two fundamentally different modes. Both are legitimate—but they demand different discipline.
 
-### “Spec” mode (planned feature)
+### Spec mode (planned feature)
 
-The full cycle: requirements → design → tasks → step-by-step implementation → property tests → commit with a conventional message.
+Full cycle: requirements → design → tasks → step-by-step implementation → property tests → commit with a conventional message.
 
-**When to use it:**
+**When to use:**
 - New functionality touching 3+ files
-- Changes to architecture or the data schema
-- Features that affect both backend and frontend
-- Anything you will need to explain to colleagues a week from now
+- Architecture or data-schema changes
+- Features spanning both backend and frontend
+- Anything you'll need to explain to colleagues a week later
 
 **Characteristics:**
-- Formal acceptance criteria (SHALL/WHEN/THEN)
+- Formal acceptance criteria (SHALL / WHEN / THEN)
 - Atomic tasks with checkpoints
-- Property tests as an acceptance criterion
-- A feature branch from `main`
+- Property tests as the acceptance gate
+- Feature branch off `main`
 
-### “Ad-hoc” mode (hotfix, experiment)
+### Ad-hoc mode (hotfix, experiment)
 
 A fast fix without a formal spec: problem statement → fix → verification → commit.
 
-**When it is acceptable:**
-- A bug localized to one file or method
-- A post-deploy fix (hotfix)
-- An experiment that can be rolled back with a single `git revert`
-- Cosmetic work: typos, import ordering, tiny refactors
+**When it's appropriate:**
+- A bug confined to a single file or method
+- A post-deploy hotfix
+- An experiment reversible with a single `git revert`
+- Cosmetic work: typos, import ordering, minor refactors
 
 **Minimal ad-hoc checklist:**
-- [ ] I described the problem in one sentence (what is broken and where)
-- [ ] I verified that the fix does not affect neighboring modules (diff < 50 lines)
-- [ ] I ran tests / the build
-- [ ] The commit message contains **what** and **why**, even if brief (`fix: normalize path separators in export — backslashes from Windows imports`)
-- [ ] If the fix expanded to 3+ files, I stopped and switched to “Spec” mode
+- [ ] Described the problem in one sentence (what's broken, where)
+- [ ] Confirmed the fix doesn't spill into neighboring modules (diff < 50 lines)
+- [ ] Ran tests / build
+- [ ] Commit message states **what** and **why**, even if brief (`fix: normalize path separators in export — backslashes from Windows imports`)
+- [ ] If the fix grew to 3+ files—stopped and switched to Spec mode
 
-### The threshold for switching modes
+### Threshold for switching modes
 
-| Signal | Ad-hoc is enough | You need a spec |
-|---------|------------------|-----------------|
+| Signal | Ad-hoc is fine | You need a spec |
+|--------|----------------|-----------------|
 | Files touched | 1–2 | 3+ |
 | DB migration involved | No | Yes |
 | API contract affected | No | Yes |
 | New dependencies required | No | Yes |
-| You will need to explain it | No | Yes |
+| Will need explaining later | No | Yes |
 | Implementation time | < 30 min | > 30 min |
 
-If you realize during ad-hoc work that you have opened a third file, that is your cue to stop, create a spec, and switch to planned mode.
+If you notice you've opened a third file during ad-hoc work, that's your cue to stop, create a spec, and switch to planned mode.
 
 ---
 
 ## Session management: knowing when to stop
 
-Long LLM sessions create an illusion of progress. After 2–3 hours of uninterrupted work, attention to diffs drops, and the threshold for “eh, looks fine” gets lower. A series of 5+ consecutive fixes in one evening is often a symptom that the first commit was accepted without enough verification.
+Long LLM sessions breed an illusion of progress. After 2–3 hours of uninterrupted work, attention to diffs drops and the bar for "eh, looks fine" gets dangerously low. A run of 5+ consecutive fixes in one evening usually means the first commit was accepted without enough scrutiny.
 
-### Rules for managing session length
+### Guidelines for session length
 
-**Signals that it is time to stop:**
-- The third `fix:` commit in a row on the same feature
-- Feeling tempted to write a commit message like `fixes` with no detail
-- Discovering a bug that you yourself introduced 20 minutes ago
-- Losing focus: you can no longer explain what the latest diff actually does
-- A session lasting more than 3 hours without a break
+**Signals it's time to stop:**
+- Third `fix:` commit in a row on the same feature
+- Temptation to write a commit message like `fixes` with no further detail
+- Finding a bug you introduced 20 minutes ago
+- Loss of focus: you can't explain what the latest diff actually does
+- Session running longer than 3 hours without a break
 
 **What to do:**
-- Save the current state (WIP commit or stash)
-- Write one sentence: “where I stopped, what comes next”
-- Return after a break and start by reviewing your own diff for the session
+- Save current state (WIP commit or stash)
+- Write one sentence: "where I stopped, what's next"
+- Return after a break and start by reviewing your own diff from the session
 
 **Planning work blocks:**
-- One “spec block” = 1–2 hours of focused work
-- Between blocks, take a break or switch context
-- Daily limit: 2–3 blocks of planned LLM work, then asynchronous tasks or review
+- One "spec block" = 1–2 hours of focused work
+- Break or context-switch between blocks
+- Daily cap: 2–3 blocks of planned LLM work, then async tasks or review
 
-### Anti-pattern: “just one more fix”
+### Anti-pattern: "just one more fix"
 
-The most common degradation pattern:
+The most common degradation scenario:
 ```
-feat commit → bug discovered → fix → another bug → fix → another → fix → fix → fix
+feat commit → bug found → fix → another bug → fix → another → fix → fix → fix
 ```
 
-The reason: the first commit was accepted without enough verification (tests did not cover an edge case, the diff was reviewed too casually). Each next fix is debt created by skipped verification.
+Root cause: the first commit was accepted without adequate verification (tests didn't cover an edge case, diff was skimmed). Each subsequent fix is debt from the skipped check.
 
-The remedy: if a second fix to the same commit is needed within an hour, stop, roll back to a stable state, find the root cause, and redo the first commit properly.
+Remedy: if a second fix to the same commit is needed within an hour—stop, roll back to the last stable state, identify the root cause, and redo the original commit properly.
 
 ---
 
-## Solo work: compensating for the lack of a reviewer
+## Solo work: compensating for the missing reviewer
 
-When there is no colleague for code review, you need to compensate for that with process.
+When there's no colleague for code review, process has to fill the gap.
 
 ### Strategies
 
-**1. “The morning after”**
-Do not merge a feature branch on the same day. Review your own PR the next morning with a fresh head. You will often spot things you missed in the flow.
+**1. "The morning after"**
+Don't merge a feature branch the same day you wrote it. The next morning, review your own PR with fresh eyes. You'll almost always spot things you missed in the flow.
 
 **2. Delayed self-review**
-After finishing a block of work, read `git diff main..HEAD` in full. Read it like someone else’s code: are the names clear, is there anything extra, do the changes agree with each other?
+After finishing a work block, read `git diff main..HEAD` end to end. Read it as if it were someone else's code: are the names clear, is anything superfluous, do the changes form a coherent whole?
 
-**3. LLM as a reviewer (with caveats)**
-You can ask the model in a separate session to review the diff—but remember the limits:
-- The model does not know your business context
-- The model may miss logical errors that formally “compile”
-- This is not a substitute for review, only an additional signal
+**3. LLM as reviewer (with caveats)**
+You can ask the model in a separate session to review the diff—but keep expectations realistic:
+- The model doesn't know your business context
+- It may miss logical errors that happen to compile
+- Treat it as an extra signal, not a substitute for review
 
-**4. Property tests as a “behavior reviewer”**
-If human review is not available, automated tests become critically important. Property tests (not just unit tests) cover scenarios you may not have thought about.
+**4. Property tests as a "behavior reviewer"**
+Without human review, automated tests become critically important. Property tests (not just unit tests) exercise scenarios you may not have considered.
 
-**5. Pre-merge solo checklist**
-- [ ] More than 2 hours have passed since the last commit in the branch (the work has cooled off)
-- [ ] I read `git diff main..HEAD` in full
+**5. Solo pre-merge checklist**
+- [ ] At least 2 hours have passed since the last commit on this branch (cooled off)
+- [ ] Read `git diff main..HEAD` end to end
 - [ ] Tests are green
-- [ ] Commit messages are understandable without chat context
-- [ ] There are no files I “forgot to remove” (debug logs, TODO hacks, temporary dependencies)
+- [ ] Commit messages make sense without chat context
+- [ ] No leftover files (debug logs, TODO hacks, temp dependencies)
 
 ---
 
@@ -223,66 +223,66 @@ If human review is not available, automated tests become critically important. P
 
 **Checking understanding**
 
-> Am I understanding you correctly: you are proposing to cache X in Redis because of Y, and we are postponing the in-memory option because of Z?
+> Let me confirm: you're proposing to cache X in Redis because of Y, and we're deferring the in-memory option because of Z?
 
 **Task boundaries**
 
-> Add an endpoint for exporting notes. Do not change the database schema and do not touch the frontend. First give me a 5-point plan, then the code.
+> Add an endpoint for exporting notes. Don't change the DB schema and don't touch the frontend. Plan in five points first, then code.
 
 **Alternatives and trade-offs**
 
-> Compare libraries A and B for our use case: 500 GB of data, nightly batch, Python 3.13. Which one will be easier to maintain in two years?
+> Compare libraries A and B for our scenario: 500 GB of data, nightly batch, Python 3.13. Which will be easier to maintain two years from now?
 
 **Domain nuance**
 
-> Keep in mind that the source files are on a NAS, the path is read-only, and the index lives in PostgreSQL. How does that change the plan?
+> Bear in mind the source files are on a NAS, the path is read-only, and the index lives in PostgreSQL. How does that change the plan?
 
 **API freshness**
 
-> Check the signatures against the current FastAPI 0.115 docs and our `pyproject.toml`. Do not use deprecated parameters.
+> Verify the signatures against the current FastAPI 0.115 docs and our `pyproject.toml`. Don't use deprecated parameters.
 
 **Architecture before code**
 
-> Before writing code, describe the components, data flows, and failure points. I want alignment first—then step-by-step implementation.
+> Before writing code: describe the components, data flows, and failure points. I want to align first—then step-by-step implementation.
 
 **Explanation**
 
-> Explain how this patch works as if you were speaking to a colleague who has not seen the context. Where is the main regression risk?
+> Walk me through how this patch works, as if explaining to a colleague who hasn't seen the context. Where's the main regression risk?
 
 **Verification**
 
-> After the changes, run the tests and the linter. If something fails, fix it and briefly report what broke.
+> After the changes, run tests and linter. If anything fails—fix it and briefly report what broke.
 
 **Risk level**
 
-> This is a draft for an experiment: simplifications are fine and minimal tests are enough. / This changes authorization: I need a conservative plan and full test coverage.
+> This is a rough draft for an experiment: simplifications are fine, minimal tests are enough. / This touches authorization: I need a conservative plan and full test coverage.
 
 ---
 
 ## Anti-patterns
 
-| Anti-pattern | Why it is bad | What to do instead |
-|-------------|--------------|-------------------|
-| One huge prompt: “redo everything” | Regressions, unaligned architecture | Break it into steps with checkpoints |
-| Trusting a pretty explanation without running anything | The model is persuasive even when wrong | Tests, build, manual scenario |
-| Looking only at the chat, not the diff | Neighboring code breaks | Review every changed file |
-| Bureaucratic wording and empty abstractions | The model cannot infer priorities | Use plain language + explicit constraints |
-| Keeping all context only in your head | The model will not guess terabytes and a NAS | Ask your own questions and capture them in the repo |
-| A zoo of IDE extensions | Noise, conflicts, mismatched context | Keep it minimal; focus on the project and checks |
-| “The model works, I relax” | Production responsibility remains with the human | Dialogue + direction + verification |
-| Blindly copying dependencies | Supply-chain risk and unnecessary weight | Ask explicitly about alternatives and risks |
-| Secrets in prompts | Key leakage | `.env`, environment variables, company policy |
-| Arguing with the model without facts | Wasted time | Logs, tests, docs—then clarify |
-| Commit message `fixes` with no context | Impossible to understand a week later; hard to revert one specific change | Even in ad-hoc mode: `fix: what and why` on one line |
-| A marathon of 20+ commits in a day | Attention degrades → fix cascade → technical debt | 2–3 focused blocks of 1–2 hours with breaks |
-| Ad-hoc work across 5+ files | This is no longer a hotfix but an unplanned feature without a spec | Stop, create a spec, switch to planned mode |
-| Merging a branch the day it was created (solo) | No “cold” verification pass | Delay the PR until “the morning after” |
+| Anti-pattern | Why it's harmful | What to do instead |
+|--------------|-----------------|-------------------|
+| One giant prompt: "redo everything" | Regressions, incoherent architecture | Break into steps with checkpoints |
+| Trusting a polished explanation without running anything | Models are persuasive even when wrong | Tests, build, manual scenario |
+| Reading only the chat, not the diff | Adjacent code breaks silently | Review every changed file |
+| Bureaucratic wording and empty abstractions | Model can't infer priorities | Plain language + explicit constraints |
+| Keeping all context in your head | Model can't guess terabytes and a NAS | Ask your own questions; capture answers in the repo |
+| A zoo of IDE extensions | Noise, conflicts, inconsistent context | Keep it minimal; focus on the project and checks |
+| "The model works, I relax" | Production accountability stays with the human | Dialogue + direction + verification |
+| Blindly copying suggested dependencies | Supply-chain risk and bloat | Explicitly ask about alternatives and risks |
+| Secrets in prompts | Credential leakage | `.env`, env vars, company policy |
+| Arguing with the model without evidence | Wasted time | Logs, tests, docs—then refine |
+| Commit message `fixes` with no context | Impossible to understand a week later; hard to revert selectively | Even in ad-hoc: `fix: what and why` in one line |
+| 20+ commit marathon in a day | Attention degrades → fix cascade → tech debt | 2–3 blocks of 1–2 hours with breaks |
+| Ad-hoc across 5+ files | That's not a hotfix—it's an unplanned feature without a spec | Stop, create a spec, switch to planned mode |
+| Merging a branch the day it was created (solo) | No "cold" verification pass | Defer the PR to "the morning after" |
 
 ---
 
 ## Minimal working cycle (one task)
 
-### “Spec” mode (planned feature)
+### Spec mode (planned feature)
 
 ```
 1. Goal + boundaries + constraints → requirements.md
@@ -290,29 +290,29 @@ If human review is not available, automated tests become critically important. P
 3. Decomposition → tasks.md (atomic steps + checkpoints)
 4. Implement one task at a time
 5. Diff + tests + linter after each step
-6. Checkpoint: everything green → next block
-7. Something unclear → “explain” → rollback / adjustment if needed
+6. Checkpoint: all green → next block
+7. Something unclear → "explain" → roll back / revise if needed
 8. Commit with a conventional message
 ```
 
-### “Ad-hoc” mode (hotfix)
+### Ad-hoc mode (hotfix)
 
 ```
 1. Problem in one sentence (what, where, how to reproduce)
 2. Fix → diff < 50 lines, 1–2 files
-3. Tests are green
+3. Tests green
 4. Commit: fix: what and why
-5. If it expands to 3+ files → STOP → create a spec
+5. If it grows to 3+ files → STOP → create a spec
 ```
 
 ---
 
 ## One sentence for leadership
 
-**Effective work with LLMs is discipline in dialogue and verification, not prompt magic:** the better you frame the goal, catch blind spots, and run checks, the fewer rewrites you will need and the safer your development acceleration will be.
+**Effective LLM-assisted development is a discipline of dialogue and verification, not prompt magic:** the better you frame the goal, surface blind spots, and run checks, the fewer rewrites you'll need and the safer your development velocity becomes.
 
 ---
 
-*Version: 2026-06-21. Source: internal team experience; expanded with practices for agentic IDEs, mandatory output verification, and analysis of real behavior (git history, spec metadata).*
+*Version: 2026-06-21. Source: internal team experience; expanded with practices for agentic IDEs, mandatory output verification, and analysis of real-world behavior (git history, spec metadata).*
 
-*Version for publication (article): [llm-development-practices-article.en.md](./llm-development-practices-article.en.md).*
+*Publication version (article): [llm-development-practices-article.en.md](./llm-development-practices-article.en.md).*
