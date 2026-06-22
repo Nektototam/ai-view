@@ -1,28 +1,25 @@
 # ai-view
 
+[Русский](./README.ru.md) | [English](./README.en.md)
+
+Repository with materials on practical LLM usage in software development.
+
 Репозиторий с материалами о практической работе с LLM в разработке ПО.
 
-## Документация
+## Start here / Начать здесь
 
-### Русская версия
+- [README.ru.md](./README.ru.md) — основная навигация и описание на русском
+- [README.en.md](./README.en.md) — primary navigation and overview in English
 
-- [Краткий гайд для команды](./docs/llm-development-practices.md)
-- [Публикационная версия статьи](./docs/llm-development-practices-article.md)
+## Documents / Документы
 
-### English version
+- [Team guide / Гайд для команды](./docs/llm-development-practices.md)
+- [Team guide (EN)](./docs/llm-development-practices.en.md)
+- [Article / Статья](./docs/llm-development-practices-article.md)
+- [Article (EN)](./docs/llm-development-practices-article.en.md)
 
-- [Short team guide](./docs/llm-development-practices.en.md)
-- [Article version for publication](./docs/llm-development-practices-article.en.md)
+## Notes / Заметки
 
-## Структура
-
-- `docs/llm-development-practices.md` — внутренний практический гайд с чеклистами и рабочими режимами
-- `docs/llm-development-practices-article.md` — более плавная статья для публикации или внешнего шаринга
-- `docs/llm-development-practices.en.md` — английская версия гайда
-- `docs/llm-development-practices-article.en.md` — английская версия статьи
-
-## Быстрый выбор
-
-- Нужен компактный, прикладной материал для команды — открывайте `llm-development-practices.md`
-- Нужен более связный текст для публикации или рассылки — открывайте `llm-development-practices-article.md`
-- Нужна англоязычная версия — используйте соответствующие файлы с суффиксом `.en.md`
+- Use `README.md` as the language hub.
+- Добавляйте новые языки отдельными файлами вида `README.xx.md`.
+- If more localized documents appear, grouping them by language under `docs/<lang>/` will scale better.
